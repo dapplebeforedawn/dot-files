@@ -1,80 +1,79 @@
-syntax on
+colorscheme vividchalk
 set nocompatible
+set nowritebackup
+set noswapfile
+set nobackup
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
 set indentexpr=
 set number
-set ai
-set foldmethod=syntax
-set foldlevel=99  "open files un-folded
-
-"for snippets plugin
-:filetype plugin on
-:filetype plugin indent on
-
-" Should make for interesting ```ruby, ```javascript, ```bash
-let g:markdown_fenced_languages = ['ruby', 'html', 'javascript', 'bash=sh']
-
-"inline method completion
-"autocmd FileType javascript, eruby set omnifunc=javascriptcomplete
-"autocmd FileType html, eruby set omnifunc=htmlcomplete 
-"autocmd FileType css, eruby set omnifunc=csscomplete 
-"autocmd FileType xml, eruby set omnifunc=xmlcomplete
-au BufRead,BufNewFile *.scss set filetype=scss
-au BufRead,BufNewFile *.rb set filetype=ruby
-au BufRead,BufNewFile *.html set filetype=html
-au BufRead,BufNewFile *.haml set filetype=haml
-au BufRead,BufNewFile *.haml setlocal foldmethod=indent
-au BufRead,BufNewFile *.jade setlocal ft=jade
-
-au Filetype scss setlocal fmr={,} fdm=marker
-
-"for ragtag plugin
-let g:ragtag_global_maps = 1
-
-"for viewing the changes to an opened file
-command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
-
-"write js file from .coffee file on change
-au BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
-
-"for comandt
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-map <Space> :CtrlP<cr>
-
-command W w
-command Q q
-command Gs Gstatus
-command Gc Gcommit
-let mapleader = ","
-map <leader>c :CoffeeCompile 10<CR>
-vnoremap <silent> <leader>r :call RubyRangeRun()<CR>
-
-map <leader>gv :CtrlP app/views<cr><f5>
-map <leader>gc :CtrlP app/controllers<cr><f5>
-map <leader>gm :CtrlP app/models<cr><f5>
-map <leader>gh :CtrlP app/helpers<cr><f5>
-map <leader>gl :CtrlP lib<cr><f5>
-map <leader>gp :CtrlP public<cr><f5>
-map <leader>gs :CtrlP app/assets/stylesheets<cr><f5>
-map <leader>gj :CtrlP app/assets/javascripts<cr><f5>
-map <S-h> gT
-map <S-l> gt
- 
-colorscheme vividchalk
-
-set backup
-set backupdir=~/.vim/backup
-set directory=~/.vim/tmp
-
-call pathogen#infect()
-
-"for powerline
-let &statusline='%<%f%{&mod?"[+]":""}%{fugitive#statusline()}%r%{&fenc !~ "^$\\|utf-8" || &bomb ? "[".&fenc.(&bomb?"-bom":"")."]" : ""}%=%15.(%l,%c%V %P%)'
-set statusline+=
-set t_Co=256
+set autoindent
 set laststatus=2 " Always show the statusline
 
-set shell=bash\ -i
+set formatprg=tree\ -f
+
+syntax enable
+filetype off
+
+set rtp+=$GOROOT/misc/vim
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+"git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+Bundle 'gmarik/vundle'
+Bundle 'dapplebeforedawn/vim-ruby-buffer'
+Bundle 'dapplebeforedawn/vim-shell-buffer'
+Bundle 'dapplebeforedawn/vim-rails-buffer'
+Bundle 'dapplebeforedawn/vim-typing-practice'
+Bundle 'godlygeek/tabular'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-rails'
+Bundle 'kien/ctrlp.vim'
+Bundle 'bling/vim-airline'
+Bundle 'vim-scripts/tComment'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'csexton/trailertrash.vim'
+Bundle 'rking/ag.vim'
+Bundle 'thoughtbot/vim-rspec'
+
+filetype plugin indent on
+
+cmap Gs Gstatus
+cmap Gc Gcommit
+cmap Gw Gwrite
+
+let g:airline_theme='dark'
+let g:airline_powerline_fonts = 1
+let mapleader = " "
+map <leader>w :w<cr>
+map <S-h> gT
+map <S-l> gt
+
+au BufWritePre * :Trim " for trailer trash
+
+" Alignment macros
+nmap <Leader>a= :Tabularize /=\(>\)\@!<CR>
+vmap <Leader>a= :Tabularize /=\(>\)\@!<CR>
+nmap <Leader>a> :Tabularize /=><CR>
+vmap <Leader>a> :Tabularize /=><CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+nmap <Leader>a{ :Tabularize / \zs{<CR>
+vmap <Leader>a:= :Tabularize /:=<CR>
+nmap <Leader>a:= :Tabularize /:=<CR>
+vmap <Leader>a{ :Tabularize / \zs{<CR>
+
+" vim-rspec mappings
+nnoremap <Leader>specf :call RunCurrentSpecFile()<CR>
+nnoremap <Leader>specn :call RunNearestSpec()<CR>
+nnoremap <Leader>spec :call RunLastSpec()<CR>
+nnoremap <Leader>speca :call RunAllSpecs()<CR>
+
+let rspec_command = "clear \; rspec {spec}"
+let rspec_options = " --require=support/formatters/vim_formatter.rb --format VimFormatter --out quickfix.out --format progress"
+let g:rspec_command = "echom system('echo \"" . rspec_command . rspec_options . "\" >> run_anything')"
+
+let g:typing_practice_stats_file='~/typing_stats.dat'
