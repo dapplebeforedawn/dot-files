@@ -11,6 +11,7 @@ set number
 set autoindent
 set laststatus=2 " Always show the statusline
 let g:airline_theme='dark'
+let g:airline_powerline_fonts = 1
 
 syntax enable
 filetype off
