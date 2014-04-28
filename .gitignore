@@ -1,0 +1,6 @@
+config/database.yml
+public/system/**
+node_modules
+tags
+.DS_Store
+.env #development only environment variables for Foreman

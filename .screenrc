@@ -1,0 +1,4 @@
+bind c stuff "screen -X chdir \$PWD; screen^M"
+defscrollback 90000 # Use a 30000-line scrollback buffer
+escape ^@a  # Instead of Control-a, make the escape/command character be Control-space
+term screen-256color

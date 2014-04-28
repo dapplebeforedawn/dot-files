@@ -1,0 +1,21 @@
+function R = rotMatrix(g)
+  rawZ  = -g;
+  zAxis = rawZ/norm(rawZ);
+  rawY  = [0, zAxis(3), -zAxis(2)];
+  yAxis = rawY / norm(rawY);
+  xAxis = cross(yAxis, zAxis);
+  R     = [xAxis; yAxis; zAxis];
+endfunction
+
+function r = d2r(deg)
+  r = deg * pi / 180;
+endfunction
+
+function R = degRotZMatrix(deg)
+  R = [ cos(d2r(deg)), -sin(d2r(deg)), 0
+        sin(d2r(deg)),  cos(d2r(deg)), 0
+        0            ,  0            , 1 ];
+endfunction
+
+g = [1.0100406, 0.0065920, 0.0939970];
+g4 = [0.70700, 0.70700, 0.001];

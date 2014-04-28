@@ -1,0 +1,61 @@
+apis:
+  gist:
+    auth: "Basic somebasicauth"
+    headers:
+      Content-Type: "application/json"
+    host: "api.github.com"
+    yolo: false
+    runner: "ruby -rjson"
+    input:
+      path: "/gists"
+      script: "puts Hash[public: false, files: { 'file1.markdown'=>{ content: STDIN.read.chomp } }].to_json"
+    output:
+       script: "puts JSON.parse(STDIN.read)['html_url']"
+
+  campfire:
+    auth: "Basic somebackisauth"
+    headers:
+      Content-Type: "application/json"
+    host: "streaming.campfirenow.com"
+    runner: "ruby -rjson"
+    input:
+      host: "innovapartners.campfirenow.com"
+      path: "/room/569461/speak.json"
+      script: "puts Hash[ message: { type: 'TextMessage', body: STDIN.read } ].to_json"
+    output:
+      path: "/room/569461/live.json"
+      script: "puts JSON.parse(STDIN.read)['body']"
+
+  bin:
+    auth: "Basic YW55LWFwaS1pZDpkb2VzbnQtbWF0dGVy"
+    host: "www.provenpopular.com"
+    runner: "ruby -rjson"
+    yolo: true
+    input:
+      path: "/qxlu7eqx"
+      query: "v=1"
+      method: "GET"
+      script: "File.open(ENV['QUERY'], 'a') { |q| q  << '&q=caremark&drug_id=001002' }"
+    output:
+      script: "puts STDIN.read"
+
+  cmm:
+    auth: "Basic YW55LWFwaS1pZDpkb2VzbnQtbWF0dGVy"
+    host: "staging.api.covermymeds.com"
+    runner: "ruby -rjson"
+    yolo: true
+    input:
+      path: "/drugs"
+      query: "v=1"
+      method: "GET"
+
+  twitter:
+    auth: |
+      OAuth oauth_consumer_key="7JiJmIq9OPA6GL0yZBDBQ", oauth_nonce="cd6896fbb7c361486a5e693036e1d4f9", oauth_signature="wS8uj0jzMr1qrTydbXI1bDXtdeI%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp="1396495721", oauth_token="19499617-qFE0RGlxLyN7cFnz11dGUdB6PolrFH5sT6LeqfZPZ", oauth_version="1.0"
+
+    host: "stream.twitter.com"
+    headers:
+      Content-Type: "application/json"
+    output:
+      path: "/1.1/statuses/filter.json"
+      query: "track=testing"
