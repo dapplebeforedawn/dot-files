@@ -81,12 +81,8 @@ nnoremap <Leader>l :call RunLastSpec()<CR>
 nnoremap <Leader>a :call RunAllSpecs()<CR>
 nnoremap <Leader>fun :echom system('echo ./script/development_functional_spec >> $HOME/.wrench')<CR>
 
-let rspec_command = "rspec {spec} --require=support/vim_formatter.rb --format VimFormatter --out quii
-ckfix.out --format progress"
-let g:rspec_command = "echom system('echo \"" . rspec_command . "\" >> $HOME/.wrench')"
-
 let rspec_command = "clear \; rspec {spec}"
 let rspec_options = " --require=support/formatters/vim_formatter.rb --format VimFormatter --out quickfix.out --format progress"
-let g:rspec_command = "echom system('echo \"" . rspec_command . rspec_options . "\" >> run_anything')"
+let g:rspec_command = "echom system('echo \"" . rspec_command . rspec_options . "\" >> $HOME/.wrench')"
 
 let g:typing_practice_stats_file='~/typing_stats.dat'
