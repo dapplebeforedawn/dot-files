@@ -18,11 +18,14 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 alias gs="git status"
 alias gc="git commit"
+alias ga="git add"
 alias gdc="git diff --cached"
+alias gd="git diff"
 alias gp='git push origin `git symbolic-ref HEAD`'
 alias be="bundle exec"
 alias gosetup="cd ~/Go; gvm use 1.2; gvm pkgset use --local; cd -"
 alias iso8601='date -u +"%Y-%m-%dT%H:%M:%SZ"'
+alias ruby_tags="bundle list --paths | ctags -L - ."
 
 function minutes_since_last_commit {
     git branch &>/dev/null
