@@ -22,6 +22,7 @@ alias ga="git add"
 alias gdc="git diff --cached"
 alias gd="git diff"
 alias gp='git push origin `git symbolic-ref HEAD`'
+alias gr='git reset HEAD'
 alias be="bundle exec"
 alias gosetup="cd ~/Go; gvm use 1.2; gvm pkgset use --local; cd -"
 alias iso8601='date -u +"%Y-%m-%dT%H:%M:%SZ"'
