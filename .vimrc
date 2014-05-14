@@ -16,29 +16,29 @@ let g:airline_powerline_fonts = 1
 syntax enable
 filetype off
 
-" https://github.com/gmarik/vundle
-set rtp+=~/.vim/bundle/vundle/
 set rtp+=$GOROOT/misc/vim
+set rtp+=~/.vim/bundle/Vundle.vim
 
-call vundle#rc()
-Bundle 'bling/vim-airline'
-Bundle 'csexton/trailertrash.vim'
-Bundle 'dapplebeforedawn/vim-rails-buffer'
-Bundle 'dapplebeforedawn/vim-ruby-buffer'
-Bundle 'dapplebeforedawn/vim-shell-buffer'
-Bundle 'dapplebeforedawn/vim-typing-practice'
-Bundle 'git@git.innova-partners.com:mlorenz/gist-vim.git'
-Bundle 'gmarik/vundle'
-Bundle 'godlygeek/tabular'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'kien/ctrlp.vim'
-Bundle 'mattn/webapi-vim'
-Bundle 'rking/ag.vim'
-Bundle 'thoughtbot/vim-rspec'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-rails'
-Bundle 'vim-scripts/tcomment'
+call vundle#begin()
+Plugin 'git@github.com:bling/vim-airline'
+Plugin 'git@github.com:csexton/trailertrash.vim'
+Plugin 'git@github.com:dapplebeforedawn/vim-rails-buffer'
+Plugin 'git@github.com:dapplebeforedawn/vim-ruby-buffer'
+Plugin 'git@github.com:dapplebeforedawn/vim-shell-buffer'
+Plugin 'git@github.com:dapplebeforedawn/vim-typing-practice'
+Plugin 'git@git.innova-partners.com:mlorenz/gist-vim.git'
+Plugin 'git@github.com:gmarik/vundle'
+Plugin 'git@github.com:godlygeek/tabular'
+Plugin 'git@github.com:kchmck/vim-coffee-script'
+Plugin 'git@github.com:kien/ctrlp.vim'
+Plugin 'git@github.com:mattn/webapi-vim'
+Plugin 'git@github.com:rking/ag.vim'
+Plugin 'git@github.com:thoughtbot/vim-rspec'
+Plugin 'git@github.com:tpope/vim-fugitive'
+Plugin 'git@github.com:tpope/vim-markdown'
+Plugin 'git@github.com:tpope/vim-rails'
+Plugin 'git@github.com:vim-scripts/tcomment'
+call vundle#end()
 
 filetype plugin indent on
 
