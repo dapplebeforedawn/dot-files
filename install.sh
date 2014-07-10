@@ -22,10 +22,10 @@ for line in "${values[@]}"; do
 
   dotfilename=${pair[0]}
   dotfilepath=${pair[1]}
-  read -n1 -p "Link $dotfilename to $dotfilepath? [y/n] " answer
+  read -n1 -p "Copy $dotfilename to $dotfilepath? [y/n] " answer
   if [ $answer = "y" ]; then
     ( mv $dotfilepath ${dotfilepath}.bak 2>/dev/null )
-    ln -s $dotfilename $dotfilepath
+    cp $dotfilename $dotfilepath
   fi
   echo ""
 done
