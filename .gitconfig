@@ -3,3 +3,5 @@
 	email = markjlorenz@dapplebeforedawn.com
 [color]
 	ui = true
+[push]
+	default = current
