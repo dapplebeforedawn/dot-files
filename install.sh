@@ -24,7 +24,9 @@ for line in "${values[@]}"; do
   dotfilepath=${pair[1]}
   read -n1 -p "Copy $dotfilename to $dotfilepath? [y/n] " answer
   if [ $answer = "y" ]; then
-    ( mv $dotfilepath ${dotfilepath}.bak 2>/dev/null )
+    if [ -f $dotfilepath ]; then
+       mv $dotfilepath ${dotfilepath}.bak 2>/dev/null
+    fi
     cp $dotfilename $dotfilepath
   fi
   echo ""
